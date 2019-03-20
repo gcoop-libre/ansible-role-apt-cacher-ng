@@ -22,6 +22,19 @@
   with_items:
     - { regexp: "^Port:", line: "Port: {{ apt_cacher_ng_port }}" }
     - { regexp: "^CacheDir:\ ", line: "CacheDir: {{ apt_cacher_ng_cache_dir }}" }
+    - { regexp: "^Proxy:\ ", line: "Proxy: {{ apt_cacher_ng_proxy_ip }}:{{ apt_cacher_ng_proxy_port }}" }
+  notify:
+    - restart apt-cacher-ng
+
+- name: Set proxy config
+  lineinfile:
+    dest: /etc/apt-cacher-ng/acng.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: "{{ item.state | default('present') }}"
+  with_items:
+    - { regexp: "^Proxy:\ ", line: "Proxy: {{ apt_cacher_ng_proxy_ip }}:{{ apt_cacher_ng_proxy_port }}" }
+  when: apt_cacher_ng_setup_proxy == true
   notify:
     - restart apt-cacher-ng
 
