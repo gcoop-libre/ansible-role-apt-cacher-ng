@@ -10,6 +10,9 @@ Ubuntu or Debian
 * `apt_cacher_ng_port: 3142`
 * `apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng`
 * `apt_cacher_ng_setup_ufw: True` Add a ufw rule to allow apt-cacher-ng
+* `apt_cacher_ng_setup_proxy: true` Add a proxy to apt-cacher-ng
+* `apt_cacher_ng_proxy_ip: 10.0.0.1`
+* `apt_cacher_ng_proxy_port: 3128`
 
 ## Dependencies
 None.
