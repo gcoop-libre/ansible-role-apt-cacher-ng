@@ -22,7 +22,6 @@
   with_items:
     - { regexp: "^Port:", line: "Port: {{ apt_cacher_ng_port }}" }
     - { regexp: "^CacheDir:\ ", line: "CacheDir: {{ apt_cacher_ng_cache_dir }}" }
-    - { regexp: "^Proxy:\ ", line: "Proxy: {{ apt_cacher_ng_proxy_ip }}:{{ apt_cacher_ng_proxy_port }}" }
   notify:
     - restart apt-cacher-ng
 
